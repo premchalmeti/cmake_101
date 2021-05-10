@@ -1,0 +1,126 @@
+Cmake:
+
+- builds buildsystems
+- used for multiple lngs
+- open source
+- wrapper over makefile
+- produces native makefile
+
+
+- create any build files outside of source code
+- creates a buildsystem and user invokes build tool to process buildsystem
+
+
+cmake working:
+    https://www.udemy.com/course/introduction-to-cmake/
+    - can visualize as oops
+    - cmake is organized in targets [executable/library]
+    - target contains properties and user reqs and targets are specified 
+        as CMakelists.txt file [a folder contains CMakelists.txt is a target]
+    - target can depends on one another
+    - root CMakelists.txt is inputed to CMake
+
+    - CMakeCache.txt: CMake meta info
+
+* Concepts/terminologies:
+
+    buildsystem/generators:
+        - collection of tool to automate pgm compilation
+        - at its core its a functional lng which maps set of src files to tgt (executable/libs)
+        - cmake produces buildsystem [specific to machine] [is not redistributable]
+        - buildtool process buildsystem
+        - ex: make, ant, jam
+
+    buildtool:
+        - build tool process buildsystem and install pckg
+        - ex: make
+
+    build-tree:
+
+    artifacts:
+
+
+* env vars/options: using -DCMAKE_INSTALL_PREFIX [-D<var>]
+    CMAKE_INSTALL_PREFIX: location to install
+    CMAKE_PREFIX_PATH: path to search for dependent pkgs
+    CMAKE_MODULE_PATH: path to search for additional CMake modules
+    CMAKE_BUILD_TYPE: built type Debug/Release
+    https://cmake.org/cmake/help/v3.20/guide/user-interaction/index.html#guide:User%20Interaction%20Guide
+
+
+* cmds:
+    - cmake .. -DCMAKE_INSTALL_PREFIX=/opt/the/prefix
+    - cmake --build .
+    - cmake --build . --target install
+
+
+* Questions:
+    - directives/cmds available
+        - cmake_minimum_required()
+        - project()
+        - add_executable()
+        - add_library()
+        - add_subdirectory()
+        - message()
+        - target_link_libraries()
+        - target_include_directories()
+        - set(K V)
+    - writing custom utility functions
+    - custom configurations
+    - settting environment vars
+    - What is makefile? When to use makefile?
+    - what is a build system?
+
+
+
+
+* makefile structure:
+var1 = prem
+
+$(var1)
+
+target [target...]: [dependent...]
+    [command...]
+
+
+* man page:
+    utility `rst2man`
+
+    Sections of man page:
+
+    1 User commands (Programs)
+    2 System calls
+    3 Library calls
+    4 Special files (devices)
+    5 File formats and configuration files
+    6 Games
+    7 Overview, conventions, and miscellaneous
+    8 System management commands
+
+    man page structure:
+        NAME
+        SYNOPSIS
+        CONFIGURATION    [Normally only in Section 4]
+        DESCRIPTION
+        OPTIONS          [Normally only in Sections 1, 8]
+        EXIT STATUS      [Normally only in Sections 1, 8]
+        RETURN VALUE     [Normally only in Sections 2, 3]
+        ERRORS           [Typically only in Sections 2, 3]
+        ENVIRONMENT
+        FILES
+        VERSIONS         [Normally only in Sections 2, 3]
+        ATTRIBUTES       [Normally only in Sections 2, 3]
+        CONFORMING TO
+        NOTES
+        BUGS
+
+        EXAMPLES
+        AUTHORS          [Discouraged]
+        REPORTING BUGS   [Not used in man-pages]
+        COPYRIGHT        [Not used in man-pages]
+        SEE ALSO
+    
+    more: https://tldp.org/HOWTO/Man-Page/
+
+Course:
+https://www.udemy.com/course/master_cmake/learn/lecture/17991171#overview

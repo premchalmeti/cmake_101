@@ -1,0 +1,1 @@
+int substract(int, int);
