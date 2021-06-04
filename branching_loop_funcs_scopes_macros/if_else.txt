@@ -1,0 +1,43 @@
+# if(<condition>)
+# 	<cmds>
+# elseif(<condition>)
+#	<cmds>
+# else()
+#	<cmds>
+# endif()
+
+# case insensitive
+# True values: 1, ON, YES, TRUE, Y, non-zero value
+# False values: 0, OFF, NO, FALSE, N, IGNORE, NOTFOUND, the empty string, string ending with NOTFOUND
+
+# BINARY TESTS: GREATER, LESS, GREATER_EQUAL, LESS_EQUAL, STREQUAL, STRGREATER, STRLESS, STREGREATER_EQUAL, STRLESS_EQUAL
+# UNARY TESTS: EXISTS(check if file exists), DEFINED (check if var is defined), COMMAND (returns true if cmd exists) 
+# BOOLEAN OPERATORS: NOT, OR, AND
+
+set(AUTHORIZED_USERS "Premkumar" "Saher" "Asifa")
+
+set(USER "Premkumar Chalmeti")
+
+string(REPLACE " " ";" USER_TMP ${USER})
+
+list(GET USER_TMP 0 FIRSTNAME)
+
+
+# cmake 3.3+: IN_LIST
+
+list(FIND AUTHORIZED_USERS ${FIRSTNAME} _found)
+
+if(found GREATER -1)
+	message("Authorized Successfully!")
+	message("Welcome ${FIRSTNAME}")
+else()
+	message("Unauthorized Access!")
+endif()
+
+# set CMP0012 policy to new to enable All True values otherwise only 1
+cmake_policy(SET CMP0012 NEW)
+
+if(1 AND ON AND YES AND TRUE AND Y AND 12)
+	message("Hit")
+endif()
+

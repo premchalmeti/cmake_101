@@ -1,0 +1,25 @@
+# https://cmake.org/cmake/help/latest/command/if.html
+
+set(AGE 17)
+
+# comparision GREATER, LESS, LESS_EQUAL, GREATER_EQUAL, 
+# STREQUAL, STRLESS, STRLESS_EQUAL, STRGREATER, STRGREATER_EQUAL, 
+# VERSION_EQUAL, VERSION_LESS, VERSION_LESS_EQUAL, VERSION_GREATER, VERSION_GREATER_EQUAL
+# MATCHES
+
+if(${AGE} GREATER 18)
+	message("Authorized")
+elseif(${AGE} LESS 18)
+	message("Unauthorized")
+endif()
+
+
+# boolean operators: NOT, AND, OR
+if(NOT ${AGE} GREATER 18)
+	message("NOT")
+endif()
+
+if("Premkumar" STREQUAL "Premkumar")
+	message("Equal")
+endif()
+

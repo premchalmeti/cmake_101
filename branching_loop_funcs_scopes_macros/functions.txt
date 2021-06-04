@@ -1,0 +1,60 @@
+# function(<name> [<arg1> ...])
+#  <commands>
+# endfunction()
+
+# function invocation is case-insensitive foo(), Foo(), etc
+# cmake 3.18: cmake_language(CALL foo)
+
+# documentation: https://cmake.org/cmake/help/latest/command/function.html
+
+
+function(print_detail var)
+	message("1. My ${var} is ${${var}}")
+endfunction()
+
+# this function will override first to access first prepend '_' while invocation
+function(print_detail var)
+	message("2. My ${var} is ${${var}}")
+endfunction()
+
+function(print_detail var)
+	message("3. My ${var} is ${${var}}")
+endfunction()
+
+
+set(name "Prem")
+set(age 25)
+
+# if sent without dereferencing then inside function double dereference it ${${}}
+# of sent with ${name} and use ${name} in function
+print_detail(name)
+Print_detail(age)
+
+_print_detail("Prem")
+
+# if defined twice the original function will be unknown/overridden can not call with __
+#__print_detail(name)
+
+
+
+# optional args
+# here name is required arg
+# optional args can be accessed by ARGV<i>
+# ARGC: Count of args
+# ARGV: list of all (named+optional)
+# ARGN: list of optional args
+function(greet name)
+	set(msg "Hello")
+	message("ARGC: ${ARGC}, ARGV: ${ARGV}, ARGN: ${ARGN}, ARG4: ${ARGV4}")
+
+	if(DEFINED ARGV1)
+		set(msg ${ARGV1})
+	endif()	
+
+	message("${msg} ${name}")
+endfunction()
+
+greet("Prem")
+greet("Prem" "Yoo")
+
+greet("Prem" "Yoo" "How" "Are" "You?")

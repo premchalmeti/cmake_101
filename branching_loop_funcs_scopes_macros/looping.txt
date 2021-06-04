@@ -1,0 +1,49 @@
+# while, foreach
+
+set(i 0)
+
+while(i LESS 10)
+	message("${i}. Processing")
+	MATH(EXPR i ${i}+1)
+endwhile()
+
+# prime no
+set(i 2)
+set(n 5)
+MATH(EXPR cntr ${n}/2)
+
+while(i LESS cntr OR i EQUAL cntr)
+	MATH(EXPR RESULT ${n}%${i})
+	if(RESULT EQUAL 0)
+		message("${n} is not Prime, as ${n}%${i} is 0")
+		break()
+	elseif(i EQUAL cntr)
+		message("${n} is a Prime")
+		break()
+	endif()
+	
+	MATH(EXPR i ${i}+1)
+endwhile()
+
+
+set(EMPLOYEES "Premkumar" "Saher" "Asifa")
+
+foreach(emp ${EMPLOYEES})
+	message(${emp})
+endforeach()
+
+# RANGE start stop(including) step
+
+foreach(i RANGE 10 20 2)
+	message("${i}. Checking loop")
+endforeach()
+
+set(VAR1 0;1)
+set(VAR2 2 3)
+set(VAR3 "4 5")
+
+# iterate first list then 2nd then 3rd
+foreach(x IN LISTS VAR1 VAR2 VAR3) 
+	message("${x}")
+endforeach()
+

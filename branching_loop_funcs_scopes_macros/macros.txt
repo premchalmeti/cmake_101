@@ -1,0 +1,36 @@
+# macros won't introduce a new macro scope and all modifications are global
+
+set(NAME "Premkumar")
+
+
+macro(change_name)
+	message("Before modification, Inside macro: ${NAME}")
+	set(NAME "Chalmeti")
+	message("After modification, Inside macro: ${NAME}")
+endmacro()
+
+message("Before modification, Outside macro: ${NAME}")
+
+change_name()
+
+message("After modification, Outside macro: ${NAME}")
+
+
+
+# return value
+
+set(RESULT 1)
+
+
+macro(calc_fact N)
+	if(DEFINED ${N})
+		message("N define")
+	endif()
+	foreach(i RANGE ${N} 1 -1)
+		MATH(EXPR RESULT ${RESULT}*${i})
+	endforeach()
+endmacro()
+
+calc_fact(5)
+message("Factorial is ${RESULT}")
+

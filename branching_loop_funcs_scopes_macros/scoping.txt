@@ -1,0 +1,38 @@
+# functions introduce new function scope and all modifications are local if you want to alter parent var append `PARENT_SCOPE`
+# add_subdirectory(), list(append), string(append), set() all will operate on current scope by default
+
+# functions can not return anything hence you can use PARENT_SCOPE as work around
+
+set(NAME "Premkumar")
+
+
+function(change_name)
+	message("Before modification, Inside function: ${NAME}")
+	set(NAME "Chalmeti" PARENT_SCOPE)
+	message("After modification, Inside function: ${NAME}")
+endfunction()
+
+message("Before modification, Outside function: ${NAME}")
+
+change_name()
+
+message("After modification, Outside function: ${NAME}")
+
+
+
+# return value
+
+set(RESULT 1)
+
+
+function(calc_fact N)
+	set(TMP 1)
+	foreach(i RANGE ${N} 1 -1)
+		MATH(EXPR TMP ${TMP}*${i})
+	endforeach()
+	set(RESULT ${TMP} PARENT_SCOPE)
+endfunction()
+
+calc_fact(5)
+message("Factorial is ${RESULT}")
+
